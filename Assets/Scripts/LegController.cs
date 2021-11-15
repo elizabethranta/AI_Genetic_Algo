@@ -8,8 +8,8 @@ public class LegController : MonoBehaviour
     private float contracted;
     private float relaxed;
 
-    [Range(-1, 1)] //Restricts position between -1 and 1
-    public float position = 1;
+    [Range(-1f, +1f)] //Restricts position between -1 and 1
+    public float position = +1;
     void Start () {
         float distance = spring.distance;
         relaxed = distance * 1.5f;
@@ -17,6 +17,8 @@ public class LegController : MonoBehaviour
     }
     void FixedUpdate ()
     {
+        Debug.Log("linear:" + linearInterpolation(-1, +1, contracted, relaxed, position));
+        Debug.Log("postion" + position);
         spring.distance = linearInterpolation(-1, +1, contracted, relaxed, position);
     }
     public static float linearInterpolation(float x0, float x1, float y0, float y1, float x)
