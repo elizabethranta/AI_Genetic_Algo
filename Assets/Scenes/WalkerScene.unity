@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 190789179}
   - component: {fileID: 190789180}
-  - component: {fileID: 190789181}
   - component: {fileID: 190789183}
   - component: {fileID: 190789182}
   m_Layer: 0
@@ -208,18 +207,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &190789181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190789178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7da317c03f1a624d9792de1f628a4c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &190789182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -359,7 +346,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1518963177}
-  - component: {fileID: 1518963178}
   m_Layer: 0
   m_Name: Walker
   m_TagString: Untagged
@@ -384,18 +370,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1518963178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518963176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3e4ca5da5a7444d981ad116f4086b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1556053196
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +511,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1820606802}
   - component: {fileID: 1820606801}
-  - component: {fileID: 1820606800}
   - component: {fileID: 1820606804}
   - component: {fileID: 1820606803}
   m_Layer: 0
@@ -547,18 +520,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1820606800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820606799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7da317c03f1a624d9792de1f628a4c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1820606801
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -730,7 +691,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.4716981, b: 0.0026519569, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
