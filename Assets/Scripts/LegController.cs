@@ -17,8 +17,8 @@ public class LegController : MonoBehaviour
     }
     void FixedUpdate ()
     {
-        Debug.Log("linear:" + linearInterpolation(-1, +1, contracted, relaxed, position));
-        Debug.Log("postion" + position);
+        // Debug.Log("linear:" + linearInterpolation(-1, +1, contracted, relaxed, position));
+        // Debug.Log("postion" + position);
         spring.distance = linearInterpolation(-1, +1, contracted, relaxed, position);
     }
     public static float linearInterpolation(float x0, float x1, float y0, float y1, float x)
