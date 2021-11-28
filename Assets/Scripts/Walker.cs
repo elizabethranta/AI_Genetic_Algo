@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Walker : MonoBehaviour
 {
+    public GameObject itself;
     public LegController left;
     public LegController right;
     public Chromosome chromosome;
     public float offset;
-    public GameRunner runner;
+    public GameObject runnerObject;
+    private GameRunner runner;
     public WalkerHead head;
+    private int achievedTime = 0;
+    public AudioClip audio;
 
     //Each leg, (m, M, o, P) are each gene
     [System.Serializable]
@@ -99,11 +103,12 @@ public class Walker : MonoBehaviour
 
         //Prevents walkers from colliding with eachother and themselves
         Physics2D.IgnoreLayerCollision(3,3);
+        runner = runnerObject.GetComponent<GameRunner>();
     }
 
     //Returns the score of the walker, if it hit its head, half the score
     public float GetScore(){
-        return head.hasHitHead ? runner.time : runner.time * .25f;
+        return head.hasHitHead ? achievedTime : achievedTime * .25f;
     }
 
     //Called each frame update
@@ -111,5 +116,11 @@ public class Walker : MonoBehaviour
     {
         left.position =  chromosome.left.EvaluateAt(Time.time) - offset;
         right.position = chromosome.right.EvaluateAt(Time.time) - offset;
+        achievedTime = runner.time;
+    }
+
+    public void Disable(){
+        AudioSource.PlayClipAtPoint(audio, this.gameObject.transform.position);
+        itself.SetActive(false);
     }
 }
