@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Walker : MonoBehaviour
@@ -116,17 +114,11 @@ public class Walker : MonoBehaviour
         runner = GameObject.Find("AlgoRunner").GetComponent<GameRunner>();
     }
 
+    //Randomizes the genes in the chromosome
     public void RandomChromosome()
     {
-        chromosome.left.m = 0f;
-        chromosome.left.M = .5f;
-        chromosome.left.o = .5f;
-        chromosome.left.p = 1f;
-
-        chromosome.right.m = 0f;
-        chromosome.right.M = .75f;
-        chromosome.right.o = .5f;
-        chromosome.right.p = 1f;
+        chromosome.left.RandomGenes();
+        chromosome.right.RandomGenes();
     }
 
     //Returns the score of the walker, if it hit its head, half the score
@@ -143,22 +135,26 @@ public class Walker : MonoBehaviour
         achievedTime = runner.time;
     }
 
+    //Returns bool if it is alive
     public bool IsAlive()
     {
         return itself.activeSelf;
     }
 
+    //Toggle GameObject active state
     public void ToogleEnable(bool boolean)
     {
         itself.SetActive(boolean);
     }
 
+    //Called by Lava script
     public void LavaPitted()
     {
         AudioSource.PlayClipAtPoint(audio, this.gameObject.transform.position);
         itself.SetActive(false);
     }
 
+    //Set the color to red and render in the front
     public void BestColor(){
         SpriteRenderer renderer = body.GetComponent<SpriteRenderer>();
         renderer.color = Color.red;

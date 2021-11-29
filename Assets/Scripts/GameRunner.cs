@@ -19,26 +19,23 @@ public class GameRunner : MonoBehaviour
 
     private List<Walker> walkers = new List<Walker>();
 
-    //https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html
-
 
     // Start is called before the first frame update
     void Start()
     {
+        //Generate a random best walker to prevent null error
         bestWalker = GenerateFirstWalker();
+        //Start simulation
         StartCoroutine(SimulationLoop());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    //Called at a fixed interval, increases time each call
     void FixedUpdate()
     {
         timeText.text = "Time: " + time++;
     }
 
+    //Used to create the first "best" walker to prevent null error
     private Walker GenerateFirstWalker()
     {
         Walker temp = new Walker();
@@ -46,29 +43,36 @@ public class GameRunner : MonoBehaviour
         return temp;
     }
 
+    //https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html
+    //Main simulation loop
     private IEnumerator SimulationLoop()
     {
         for (int i = 0; i < generations; i++)
         {
+            //Create walkers, update UI then start simulation
             CreateWalkers();
             generationText.text = "Generation: " + currentGeneration++.ToString();
             prevBestScoreText.text = "Prev Best Score: " + bestScore.ToString();
             time = 0;
             StartSimulation();
-            // yield return new WaitForSeconds(maxTimeout);
+
+            // Run simulation until all the walkers are dead
             while (!AllDead())
             {
                 yield return null;
             }
             StopSimulation();
 
+            //Get the best score for that population then destroy them
             EvaluateScore();
             DestroyCreatures();
 
+            //Wait for a second
             yield return new WaitForSeconds(1);
         }
     }
 
+    //Checks if all the walkers are disabled
     private bool AllDead()
     {
         bool allDead = true;
@@ -80,6 +84,7 @@ public class GameRunner : MonoBehaviour
         return allDead;
     }
 
+    //Get the best score for all the walkers in that population
     public void EvaluateScore()
     {
         foreach (Walker walker in walkers)
@@ -112,13 +117,13 @@ public class GameRunner : MonoBehaviour
 
                 //Assign the mutated walker to the newly created one
                 walker.chromosome = tempChromosome;
-
                 walker.ToogleEnable(false);
                 walkers.Add(walker);
             }
         }
         else
         {
+            //Make half the population based of the best previous generation mutated
             for (int i = 0; i < populationSize/2; i++)
             {
                 //Creates a Gameobject in unity
@@ -130,7 +135,6 @@ public class GameRunner : MonoBehaviour
 
                 //Assign the mutated walker to the newly created one
                 walker.chromosome = tempChromosome;
-                // Debug.Log("Left m: " + walker.chromosome.left.m);
                 walker.ToogleEnable(false);
                 walkers.Add(walker);
             }
@@ -151,7 +155,7 @@ public class GameRunner : MonoBehaviour
                 walker.ToogleEnable(false);
                 walkers.Add(walker);
             }
-            //Add best walker to generation and give fancy color
+            //Add best walker to generation and give fancy color for visual effect
             {
                 Walker walker = Instantiate(prefab, pos, Quaternion.identity).GetComponent<Walker>();
                 Walker.Chromosome tempChromosome = bestWalker.Clone();
