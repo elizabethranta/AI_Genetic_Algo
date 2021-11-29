@@ -5,7 +5,8 @@ using UnityEngine;
 public class Lava : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other){
-        Debug.Log("Walker killed");
-        other.GetComponentInParent<Walker>().Disable();
+            Walker walker = other.GetComponentInParent<Walker>();
+            if(walker != null)
+                walker.LavaPitted();
     }
 }

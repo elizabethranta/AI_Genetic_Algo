@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class WalkerHead : MonoBehaviour
 {
-    public bool hasHitHead = false;
-
-    
+    public Walker walker;
     void OnCollisionEnter2D(Collision2D other){
-        hasHitHead = true;
+        walker.ToogleEnable(false);
     }
 }
