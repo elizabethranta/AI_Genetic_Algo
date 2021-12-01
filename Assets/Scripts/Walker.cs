@@ -150,7 +150,9 @@ public class Walker : MonoBehaviour
     //Called by Lava script
     public void LavaPitted()
     {
-        AudioSource.PlayClipAtPoint(audio, this.gameObject.transform.position);
+        if(audio != null){
+            AudioSource.PlayClipAtPoint(audio, this.gameObject.transform.position);
+        }
         itself.SetActive(false);
     }
 
